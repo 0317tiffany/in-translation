@@ -1,6 +1,6 @@
 ---
 name: translate-agent-reasoning
-description: 将 AI agent 的英文思考过程（thinking / reasoning）翻译成中英双语对照，中文在上、英文折叠可展开。当用户要求"翻译思考过程 / 翻译 reasoning / 双语对照思考 / translate the agent's thinking"时使用。输入限于用户粘贴的思考文本、用户指定文件中的思考记录、或会话中用户已可见的 reasoning 摘要；仅翻译可见文本，不访问、不复原不可见的内部思考。
+description: 将 AI agent 的英文思考过程（thinking / reasoning）翻译成中英双语对照，中文在上、英文折叠可展开。当用户要求"翻译思考过程 / 翻译 reasoning / 双语对照思考 / translate the agent's thinking"时使用。自动识别 DeepSeek、Claude、Codex 等主流 agent 的思考格式。输入限于用户粘贴的思考文本、用户指定文件中的思考记录、或会话中用户已可见的 reasoning 摘要；仅翻译可见文本，不访问、不复原不可见的内部思考。
 metadata:
   agent_created: true
 ---
@@ -32,12 +32,13 @@ metadata:
 
 ### Step 2：预处理
 
-1. **标记不译内容**，翻译时原样保留：
+1. **识别来源格式并剥离标记**：按 `references/agent-formats.md` 识别输入属于哪个 agent 的思考格式（DeepSeek R1 的 think 标签、Codex 的 reasoning summary、harness 类框架的行首标记等），剥离包裹标记后仅翻译正文；未识别的格式按该文件的通用剥离规则处理，不因格式未知而拒绝翻译
+2. **标记不译内容**，翻译时原样保留：
    - 代码块（围栏内）与行内代码
    - shell 命令、文件路径、URL
    - 变量名、函数名、类名、参数名
    - JSON / YAML / XML 等结构化数据片段
-2. **按语义分段**：以一个完整推理单元为一段（一个假设、一次推演、一个决定）。不按句子硬切，保证推理链完整。
+3. **按语义分段**：以一个完整推理单元为一段（一个假设、一次推演、一个决定）。不按句子硬切，保证推理链完整。
 
 ### Step 3：翻译
 
@@ -78,6 +79,7 @@ metadata:
 - 渲染环境不支持 HTML（`<details>` 被过滤）时，降级为分隔线 + 引用块：`---` 之后用 `> ` 逐段引用英文原文，并加一行"英文原文（折叠不可用）"
 - 折叠块内的英文保持原文的段落结构与代码块
 - 不译内容（代码、命令等）在中文译文中原样出现，缩进与原文一致
+- 能明确判断输入来自哪个 agent 时，在输出头部加一行来源标注（如"来源：DeepSeek R1"）；判断不了就不标注，不猜测
 
 ### Step 5：可选保存文件
 
@@ -97,4 +99,5 @@ metadata:
 ## 参考资料
 
 - `references/translation-guide.md` — 信达雅操作细则、术语三类清单、思考质感处理规则（翻译前必读）
+- `references/agent-formats.md` — 主流 agent 思考格式的识别、标记剥离与来源标注（预处理时使用）
 - `references/examples.md` — 完整的翻译前后对照范例

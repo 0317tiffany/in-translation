@@ -8,7 +8,7 @@
 
 ## 这是什么
 
-AI agent 的思考过程（thinking / reasoning / extended thinking）大多是英文的，中文用户往往只能"看个大概"。**In Translation** 项目提供一个 agent skill（`translate-agent-reasoning`）：把英文思考过程翻译成**中文在上、英文折叠对照**的双语形式——先流畅地读懂，遇到疑问再展开原文核对。
+AI agent 的思考过程（thinking / reasoning / extended thinking）大多是英文的，中文用户往往只能"看个大概"。**In Translation** 项目提供一个 agent skill（`translate-agent-reasoning`）：把英文思考过程翻译成**中文在上、英文折叠对照**的双语形式——先流畅地读懂，遇到疑问再展开原文核对。自动识别主流 agent 的思考格式——DeepSeek 的 think 标签、Claude 的 thinking、Codex 的 reasoning summary、各类 harness 的行首标记——粘贴即可翻译。
 
 ## 效果展示
 
@@ -92,6 +92,7 @@ in-translation/
             ├── SKILL.md             # skill 主文件：工作流 + 输出模板 + 质量自检
             └── references/
                 ├── translation-guide.md   # 信达雅细则 + 术语三类规则
+                ├── agent-formats.md       # 主流 agent 思考格式识别与标记剥离
                 └── examples.md            # 翻译前后对照范例
 ```
 
@@ -99,7 +100,8 @@ in-translation/
 
 欢迎通过 issue / PR 参与，特别欢迎：
 
-- 补充**术语保留清单**（AI / 前端 / 后端 / 数据等领域的常用术语）
+- 补充**术语三类清单**（AI / 前端 / 后端 / 数据等领域的常用术语）
+- 报告**未识别的思考格式**（帮助扩充 agent-formats.md 速查表）
 - 提供更多**翻译范例**（不同 agent 的真实思考样本）
 - 改进翻译细则中不符合你语感的规则
 
@@ -115,7 +117,7 @@ in-translation/
 
 ## What is this
 
-AI agents mostly think in English, which leaves Chinese-speaking users reading their reasoning "roughly". **In Translation** provides an agent skill (`translate-agent-reasoning`) that renders an agent's English thinking process as **Chinese-first with the English original collapsible underneath** — read it fluently first, expand the original only when you need to verify.
+AI agents mostly think in English, which leaves Chinese-speaking users reading their reasoning "roughly". **In Translation** provides an agent skill (`translate-agent-reasoning`) that renders an agent's English thinking process as **Chinese-first with the English original collapsible underneath** — read it fluently first, expand the original only when you need to verify. It auto-detects thinking formats from major agents — DeepSeek think tags, Claude thinking, Codex reasoning summaries, harness-style prefixes — just paste and translate.
 
 ## Translation standard: Faithfulness > Expressiveness > Elegance
 
