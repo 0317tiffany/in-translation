@@ -1,0 +1,16 @@
+# WorkBuddy 本地数据（个人会话记忆，不纳入开源仓库）
+.workbuddy/memory/
+
+# 打包产物
+dist/
+*.zip
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor
+*.swp
+.idea/
+.vscode/
