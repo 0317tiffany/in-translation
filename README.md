@@ -41,15 +41,15 @@ buffer, so `lines` stays empty. That's the bug.
 
 两条特色规则：
 
-- **术语保留英文** — API、token、hook、prompt、agent 等开发者通用术语不翻译，译文干净不隔靴搔痒（完整清单见 [translation-guide.md](.workbuddy/skills/translate-agent-reasoning/references/translation-guide.md)）
-- **保留思考质感** — wait→"等等"、hmm→"嗯"，自我修正与推理链如实翻译。这些是 agent 推理路径的路标，抹平了就失去了"看 agent 怎么想"的意义
+- **术语按三类规则处理** — API、token、hook、prompt、agent 等开发者通用术语保留英文，常见词正常翻译，有通行译名的领域术语首次标注原文（主要清单与判定规则见 [translation-guide.md](.workbuddy/skills/translate-agent-reasoning/references/translation-guide.md)）
+- **保留思考质感** — 独立使用的 "Wait..." 可译作“等等……”，"wait for" 则译作“等待”；hmm 译作“嗯”。自我修正与推理链如实翻译。这些是 agent 推理路径的路标，抹平了就失去了“看 agent 怎么想”的意义
 
 ## 安装
 
 ### WorkBuddy（项目级）
 
 ```bash
-git clone https://github.com/<your-username>/in-translation.git
+git clone https://github.com/0317tiffany/in-translation.git
 ```
 
 clone 后用 WorkBuddy 打开该项目目录，skill 自动生效（位于 `.workbuddy/skills/translate-agent-reasoning/`）。
@@ -91,7 +91,7 @@ in-translation/
         └── translate-agent-reasoning/
             ├── SKILL.md             # skill 主文件：工作流 + 输出模板 + 质量自检
             └── references/
-                ├── translation-guide.md   # 信达雅细则 + 术语保留清单
+                ├── translation-guide.md   # 信达雅细则 + 术语三类规则
                 └── examples.md            # 翻译前后对照范例
 ```
 
@@ -123,14 +123,14 @@ Adapted from Yan Fu's classic translation principles, operationalized for techni
 
 Two signature rules:
 
-- **Keep developer terms in English** — API, token, hook, prompt, agent stay as-is (see the full glossary in [translation-guide.md](.workbuddy/skills/translate-agent-reasoning/references/translation-guide.md))
-- **Preserve the texture of thinking** — translate *wait* as "等等", *hmm* as "嗯"; keep self-corrections and reasoning chains intact. They are the signposts of how the agent actually thinks.
+- **Handle terminology in three tiers** — common developer terms such as API, token, hook, prompt, and agent stay in English; everyday terms are translated; domain terms with established Chinese equivalents are translated and annotated on first use (see the glossary and judgment rules in [translation-guide.md](.workbuddy/skills/translate-agent-reasoning/references/translation-guide.md))
+- **Preserve the texture of thinking** — a standalone "Wait..." can become "等等……", while "wait for" means "等待"; translate *hmm* as "嗯". Keep self-corrections and reasoning chains intact. They are the signposts of how the agent actually thinks.
 
 ## Install
 
 ```bash
 # WorkBuddy (project scope): clone and open the project in WorkBuddy
-git clone https://github.com/<your-username>/in-translation.git
+git clone https://github.com/0317tiffany/in-translation.git
 
 # WorkBuddy (user scope) / Claude Code:
 cp -r in-translation/.workbuddy/skills/translate-agent-reasoning ~/.workbuddy/skills/   # or ~/.claude/skills/
