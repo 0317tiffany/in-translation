@@ -8,7 +8,7 @@
 
 ## 这是什么
 
-AI agent 的思考过程（thinking / reasoning / extended thinking）大多是英文的，中文用户往往只能"看个大概"。**In Translation** 是一个 agent skill：把英文思考过程翻译成**中文在上、英文折叠对照**的双语形式——先流畅地读懂，遇到疑问再展开原文核对。
+AI agent 的思考过程（thinking / reasoning / extended thinking）大多是英文的，中文用户往往只能"看个大概"。**In Translation** 项目提供一个 agent skill（`translate-agent-reasoning`）：把英文思考过程翻译成**中文在上、英文折叠对照**的双语形式——先流畅地读懂，遇到疑问再展开原文核对。
 
 ## 效果展示
 
@@ -41,7 +41,7 @@ buffer, so `lines` stays empty. That's the bug.
 
 两条特色规则：
 
-- **术语保留英文** — API、token、hook、prompt、agent 等开发者通用术语不翻译，译文干净不隔靴搔痒（完整清单见 [translation-guide.md](.workbuddy/skills/in-translation/references/translation-guide.md)）
+- **术语保留英文** — API、token、hook、prompt、agent 等开发者通用术语不翻译，译文干净不隔靴搔痒（完整清单见 [translation-guide.md](.workbuddy/skills/translate-agent-reasoning/references/translation-guide.md)）
 - **保留思考质感** — wait→"等等"、hmm→"嗯"，自我修正与推理链如实翻译。这些是 agent 推理路径的路标，抹平了就失去了"看 agent 怎么想"的意义
 
 ## 安装
@@ -52,12 +52,12 @@ buffer, so `lines` stays empty. That's the bug.
 git clone https://github.com/<your-username>/in-translation.git
 ```
 
-clone 后用 WorkBuddy 打开该项目目录，skill 自动生效（位于 `.workbuddy/skills/in-translation/`）。
+clone 后用 WorkBuddy 打开该项目目录，skill 自动生效（位于 `.workbuddy/skills/translate-agent-reasoning/`）。
 
 ### WorkBuddy（用户级，全项目可用）
 
 ```bash
-cp -r in-translation/.workbuddy/skills/in-translation ~/.workbuddy/skills/
+cp -r in-translation/.workbuddy/skills/translate-agent-reasoning ~/.workbuddy/skills/
 ```
 
 ### Claude Code（格式兼容）
@@ -65,7 +65,7 @@ cp -r in-translation/.workbuddy/skills/in-translation ~/.workbuddy/skills/
 `SKILL.md` + frontmatter 结构与 Claude Code skills 同构，可直接使用：
 
 ```bash
-cp -r in-translation/.workbuddy/skills/in-translation ~/.claude/skills/
+cp -r in-translation/.workbuddy/skills/translate-agent-reasoning ~/.claude/skills/
 ```
 
 ## 使用
@@ -74,7 +74,7 @@ cp -r in-translation/.workbuddy/skills/in-translation ~/.claude/skills/
 
 | 输入 | 示例 |
 |---|---|
-| 本会话思考 | "翻译一下你刚才的思考" |
+| 会话内可见思考 | "翻译一下你刚才的思考"（仅翻译会话中可见的 reasoning 摘要，不访问不可见的内部思考） |
 | 粘贴文本 | "把这段 reasoning 翻成双语" + 粘贴英文思考 |
 | 文件 | "翻译 thinking-log.md 里的思考记录" |
 
@@ -88,7 +88,7 @@ in-translation/
 ├── README.md                        # 本文件（双语）
 └── .workbuddy/
     └── skills/
-        └── in-translation/
+        └── translate-agent-reasoning/
             ├── SKILL.md             # skill 主文件：工作流 + 输出模板 + 质量自检
             └── references/
                 ├── translation-guide.md   # 信达雅细则 + 术语保留清单
@@ -115,7 +115,7 @@ in-translation/
 
 ## What is this
 
-AI agents mostly think in English, which leaves Chinese-speaking users reading their reasoning "roughly". **In Translation** is an agent skill that renders an agent's English thinking process as **Chinese-first with the English original collapsible underneath** — read it fluently first, expand the original only when you need to verify.
+AI agents mostly think in English, which leaves Chinese-speaking users reading their reasoning "roughly". **In Translation** provides an agent skill (`translate-agent-reasoning`) that renders an agent's English thinking process as **Chinese-first with the English original collapsible underneath** — read it fluently first, expand the original only when you need to verify.
 
 ## Translation standard: Faithfulness > Expressiveness > Elegance
 
@@ -123,7 +123,7 @@ Adapted from Yan Fu's classic translation principles, operationalized for techni
 
 Two signature rules:
 
-- **Keep developer terms in English** — API, token, hook, prompt, agent stay as-is (see the full glossary in [translation-guide.md](.workbuddy/skills/in-translation/references/translation-guide.md))
+- **Keep developer terms in English** — API, token, hook, prompt, agent stay as-is (see the full glossary in [translation-guide.md](.workbuddy/skills/translate-agent-reasoning/references/translation-guide.md))
 - **Preserve the texture of thinking** — translate *wait* as "等等", *hmm* as "嗯"; keep self-corrections and reasoning chains intact. They are the signposts of how the agent actually thinks.
 
 ## Install
@@ -133,7 +133,7 @@ Two signature rules:
 git clone https://github.com/<your-username>/in-translation.git
 
 # WorkBuddy (user scope) / Claude Code:
-cp -r in-translation/.workbuddy/skills/in-translation ~/.workbuddy/skills/   # or ~/.claude/skills/
+cp -r in-translation/.workbuddy/skills/translate-agent-reasoning ~/.workbuddy/skills/   # or ~/.claude/skills/
 ```
 
 ## Usage
